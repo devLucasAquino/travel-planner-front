@@ -1,10 +1,12 @@
-import { MapPin, Calendar, ArrowRight, UserRoundPlus, Settings2 } from 'lucide-react';
 import { useState } from 'react';
+import { MapPin, Calendar, ArrowRight, UserRoundPlus, Settings2 } from 'lucide-react';
 
+import { GuestModal } from './components/GuestModal';
 
 export function App() {
 
   const [ isGuestInputOpen, setIsGuestInputOpen ] = useState(false);
+  const [ isGuestModalOpen, setIsGuestModalOpen ] = useState(false);
 
   function openGuestInput() {
     setIsGuestInputOpen(true);
@@ -12,6 +14,14 @@ export function App() {
 
   function closeGuestInput() {
     setIsGuestInputOpen(false);
+  }
+
+  function openGuestModal(){
+    setIsGuestModalOpen(true);
+  }
+
+  function closeGuestModal(){
+    setIsGuestModalOpen(false);
   }
 
   return (
@@ -52,10 +62,10 @@ export function App() {
 
           {isGuestInputOpen && (
             <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
-              <div className='flex items-center gap-2 flex-1'>
+              <button onClick={openGuestModal} className='flex items-center gap-2 flex-1 text-left'>
                 <UserRoundPlus className='size-5 text-zinc-400'/>
-                <input type="text" placeholder="Quem estará na viagem?"  className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" />
-              </div>
+                <span className='text-zinc-400 text-lg flex-1'>Quem estará na viagem?</span>
+              </button>
 
               <div className='w-px h-6 bg-zinc-800'/> 
               
@@ -72,6 +82,8 @@ export function App() {
           com nossos <a href="#" className="text-zinc-300 underline">termos de uso</a> e <a href="#" className="text-zinc-300 underline">políticas de privacidade</a>.
         </p>
       </div>
+
+      {isGuestModalOpen && <GuestModal close={closeGuestModal} />}
     </div>
   )
 }
