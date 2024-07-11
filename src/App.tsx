@@ -1,12 +1,20 @@
 import { useState } from 'react';
-import { MapPin, Calendar, ArrowRight, UserRoundPlus, Settings2 } from 'lucide-react';
+import { 
+  MapPin, 
+  Calendar, 
+  ArrowRight, 
+  UserRoundPlus, 
+  Settings2, 
+} from 'lucide-react';
 
 import { GuestModal } from './components/GuestModal';
+import { ConfirmTripModal } from './components/ConfirmTripModal';
 
 export function App() {
 
   const [ isGuestInputOpen, setIsGuestInputOpen ] = useState(false);
   const [ isGuestModalOpen, setIsGuestModalOpen ] = useState(false);
+  const [ isConfirmTripModalOpen, setIsConfirmTripModalOpen ] = useState(false);
 
   function openGuestInput() {
     setIsGuestInputOpen(true);
@@ -22,6 +30,14 @@ export function App() {
 
   function closeGuestModal(){
     setIsGuestModalOpen(false);
+  }
+
+  function openConfirmTripModal(){
+    setIsConfirmTripModalOpen(true);
+  }
+
+  function closeConfirmTripModal(){
+    setIsConfirmTripModalOpen(false);
   }
 
   return (
@@ -69,7 +85,7 @@ export function App() {
 
               <div className='w-px h-6 bg-zinc-800'/> 
               
-              <button className='bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400'>
+              <button onClick={openConfirmTripModal} className='bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400'>
                 Confirmar viagem
                 <ArrowRight className='size-5'/>
               </button>   
@@ -82,8 +98,11 @@ export function App() {
           com nossos <a href="#" className="text-zinc-300 underline">termos de uso</a> e <a href="#" className="text-zinc-300 underline">políticas de privacidade</a>.
         </p>
       </div>
-
       {isGuestModalOpen && <GuestModal close={closeGuestModal} />}
+      
+      {isConfirmTripModalOpen && <ConfirmTripModal close={closeConfirmTripModal}/>}
+      
+
     </div>
   )
 }
