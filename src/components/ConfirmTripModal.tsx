@@ -1,4 +1,4 @@
-import { X, User } from 'lucide-react';
+import { X, User, Mail} from 'lucide-react';
 
 interface Props {
     close: () => void;
@@ -35,7 +35,7 @@ export const ConfirmTripModal: React.FC<Props> = ( { close } ) => {
                    </div>
 
                    <div className='h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
-                    <User className='text-zinc-400 size-5'/>
+                    <Mail className='text-zinc-400 size-5'/>
                     <input 
                         type="email" 
                         name='email' 
@@ -44,7 +44,7 @@ export const ConfirmTripModal: React.FC<Props> = ( { close } ) => {
                    </div>
 
                     <button type='submit' className=' w-full justify-center bg-lime-300 text-lime-950 rounded-lg h-11 py-2 font-medium flex items-center gap-2 hover:bg-lime-400'>
-                        Confirmar
+                        Confirmar criação da viagem
                     </button>
                 </form>
             </div>

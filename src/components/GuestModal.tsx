@@ -4,13 +4,12 @@ import { X, AtSign, Plus } from 'lucide-react';
 
 interface Props {
     close: () => void;
+    guestList: string[];
+    setGuestList: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const GuestModal: React.FC<Props> = ( { close } ) => {
-    const [ emailsToInvite, setEmailsToInvite ] = useState([
-        'joao@rocketseat.com'
-    ]);
-
+export const GuestModal: React.FC<Props> = ( { close, guestList, setGuestList } ) => {
+    
     function addNewGuestEmail(event: FormEvent<HTMLFormElement>){
         event.preventDefault();
 
@@ -21,21 +20,21 @@ export const GuestModal: React.FC<Props> = ( { close } ) => {
             return
         }
 
-        if(emailsToInvite.includes(email)){
+        if(guestList.includes(email)){
             return
         }
 
-        setEmailsToInvite([
-            ...emailsToInvite, email
+        setGuestList([
+            ...guestList, email
         ])
 
         event.currentTarget.reset();
     };
 
     function removeGuestEmail(emailToRemove: string) {
-        const newEmailList = emailsToInvite.filter(email => email !== emailToRemove);
+        const newEmailList = guestList.filter(email => email !== emailToRemove);
 
-        setEmailsToInvite(newEmailList);
+        setGuestList(newEmailList);
     }
 
     return(
@@ -52,7 +51,7 @@ export const GuestModal: React.FC<Props> = ( { close } ) => {
                 </div>
 
                 <div className='flex flex-wrap gap-2'>
-                    {emailsToInvite.map((email) => {
+                    {guestList.map((email) => {
                         return(
                             <div key={email} className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
                                 <span className='text-zinc-300'>{email}</span>
