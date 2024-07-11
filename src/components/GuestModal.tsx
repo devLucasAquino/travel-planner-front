@@ -32,8 +32,10 @@ export const GuestModal: React.FC<Props> = ( { close } ) => {
         event.currentTarget.reset();
     };
 
-    function removeGuestEmail(email) {
-        
+    function removeGuestEmail(emailToRemove: string) {
+        const newEmailList = emailsToInvite.filter(email => email !== emailToRemove);
+
+        setEmailsToInvite(newEmailList);
     }
 
     return(
