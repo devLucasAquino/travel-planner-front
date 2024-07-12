@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent } from 'react';
 
 import { X, AtSign, Plus } from 'lucide-react';
 
