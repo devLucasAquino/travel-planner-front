@@ -39,7 +39,7 @@ export const ConfirmTripModal: React.FC<Props> = ( { close } ) => {
                     <input 
                         type="text" 
                         name='name' 
-                        placeholder="Seu nome completo"  
+                        placeholder="Digite seu nome completo"  
                         className="bg-transparent text-lg placeholder-zinc-400 flex-1 outline-none" />
                    </div>
 
@@ -48,7 +48,7 @@ export const ConfirmTripModal: React.FC<Props> = ( { close } ) => {
                     <input 
                         type="email" 
                         name='email' 
-                        placeholder="Seu e-mail pessoal"  
+                        placeholder="Digite seu e-mail pessoal"  
                         className="bg-transparent text-lg placeholder-zinc-400 flex-1 outline-none" />
                    </div>
 
