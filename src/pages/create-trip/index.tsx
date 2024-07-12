@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { GuestModal } from './GuestModal';
-import { ConfirmTripModal } from './ConfirmTripModal';
+import { GuestModal } from './invite-guest-modal';
+import { ConfirmTripModal } from './confirm-trip-modal';
 import { DestinationAndDateStep } from './steps/destination-and-date-step';
 import { InviteGuestsStep } from './steps/invite-guests-step';
 
