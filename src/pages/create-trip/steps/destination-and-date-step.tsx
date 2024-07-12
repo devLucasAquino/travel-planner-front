@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { DateRange, DayPicker } from "react-day-picker";
+import { format } from 'date-fns';
 
 import { MapPin, Calendar, Settings2, ArrowRight, X } from "lucide-react";
 
@@ -31,17 +32,21 @@ export function DestinationAndDateStep({
     setIsDatePickerOpen(false);
   }
 
+  const displayedDate = eventStartAndEndDate && eventStartAndEndDate.from && eventStartAndEndDate.to
+  ? format(eventStartAndEndDate.from, "d ' de ' LLL").concat(' até ').concat(format(eventStartAndEndDate.to, "d ' de ' LLL")) 
+  : null 
+
     return(
         <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
             <div className='flex items-center gap-2 flex-1'>
               <MapPin className='size-5 text-zinc-400'/>
               <input disabled={isGuestInputOpen} type="text" placeholder="Para onde você vai?"  className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" />
             </div>
-            <button onClick={openDatePicker} disabled={isGuestInputOpen} className='flex items-center gap-2 text-left'>
+            <button onClick={openDatePicker} disabled={isGuestInputOpen} className='flex items-center gap-2 text-left w-[240px]'>
               <Calendar className='size-5 text-zinc-400'/>
               <span                 
-                className="text-lg text-zinc-400 w-40">
-                Quando?
+                className="text-lg text-zinc-400 w-40 flex-1">
+                {displayedDate || 'Quando?'}
               </span>
             </button>
 
@@ -57,7 +62,7 @@ export function DestinationAndDateStep({
                       </div>
                   </div>
   
-                  <DayPicker mode="range" selected={eventStartAndEndDate} onSelect={setEventStartAndEndDate} />
+                  <DayPicker mode="range" selected={eventStartAndEndDate} onSelect={setEventStartAndEndDate } />
                 </div>
               </div>
             )}
