@@ -1,15 +1,24 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FormEvent } from 'react';
 
 import { GuestModal } from './invite-guest-modal';
 import { ConfirmTripModal } from './confirm-trip-modal';
 import { DestinationAndDateStep } from './steps/destination-and-date-step';
 import { InviteGuestsStep } from './steps/invite-guests-step';
+import { DateRange } from 'react-day-picker';
 
 export function CreateTripPage() {
 
   const [ isGuestInputOpen, setIsGuestInputOpen ] = useState(false);
   const [ isGuestModalOpen, setIsGuestModalOpen ] = useState(false);
   const [ isConfirmTripModalOpen, setIsConfirmTripModalOpen ] = useState(false);
+
+  const [ destination, setDestination ] = useState('');
+  const [ ownerName, setOwnerName ] = useState('');
+  const [ ownerEmail, setOwnerEmail ] = useState('');
+  const [ eventStartAndEndDate, setEventStartAndEndDate ] = useState<DateRange | undefined>();
+
   const [ emailsToInvite, setEmailsToInvite ] = useState([
     'joao@rocketseat.com'
   ]);
@@ -39,6 +48,20 @@ export function CreateTripPage() {
     setIsConfirmTripModalOpen(false);
   }
 
+  const navigate = useNavigate()
+
+    function createTrip(event: FormEvent<HTMLFormElement>){
+        event.preventDefault();
+
+        console.log(destination)
+        console.log(ownerEmail)
+        console.log(ownerName)
+        console.log(emailsToInvite)
+        console.log(eventStartAndEndDate)
+        //navigate('trips/12');
+    }
+
+
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
       <div className="max-w-3xl w-full px-6 text-center space-y-10">
@@ -54,6 +77,9 @@ export function CreateTripPage() {
                 closeGuestInput={closeGuestInput}
                 openGuestInput={openGuestInput}
                 isGuestInputOpen={isGuestInputOpen}
+                setDestination={setDestination}
+                setEventStartAndEndDate={setEventStartAndEndDate}
+                eventStartAndEndDate={eventStartAndEndDate}
             />
 
           {isGuestInputOpen && (
@@ -63,13 +89,14 @@ export function CreateTripPage() {
                 openConfirmTripModal={openConfirmTripModal}
             />
           )}
-        </div>
 
+      </div>
         <p className="text-sm text-zinc-500">
           Ao planejar sua viagem pela plann.er você automaticamente concorda <br />
           com nossos <a href="#" className="text-zinc-300 underline">termos de uso</a> e <a href="#" className="text-zinc-300 underline">políticas de privacidade</a>.
         </p>
       </div>
+
       {isGuestModalOpen && (
         <GuestModal 
             close={closeGuestModal} 
@@ -78,7 +105,14 @@ export function CreateTripPage() {
         />
        )}
       
-      {isConfirmTripModalOpen && <ConfirmTripModal close={closeConfirmTripModal}/>}
+      {isConfirmTripModalOpen && (
+        <ConfirmTripModal
+          createTrip={createTrip} 
+          close={closeConfirmTripModal}
+          setOwnerName={setOwnerName}
+          setOwnerEmail={setOwnerEmail}
+        />
+      )}
       
 
     </div>
