@@ -1,6 +1,7 @@
 import { FormEvent } from 'react';
 
 import { X, AtSign, Plus } from 'lucide-react';
+import { Button } from '../../components/button';
 
 interface Props {
     close: () => void;
@@ -55,7 +56,9 @@ export const GuestModal: React.FC<Props> = ( { close, guestList, setGuestList } 
                         return(
                             <div key={email} className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
                                 <span className='text-zinc-300'>{email}</span>
-                                <button type='button' onClick={() => removeGuestEmail(email)}><X className='size-4 text-zinc-400'/></button>
+                                <button type='button' onClick={() => removeGuestEmail(email)}>
+                                    <X className='size-4 text-zinc-400'/>
+                                </button>
                             </div>
                         )
                     })}
@@ -72,10 +75,11 @@ export const GuestModal: React.FC<Props> = ( { close, guestList, setGuestList } 
                         placeholder="Digite o e-mail do convidado"  
                         className="bg-transparent text-lg placeholder-zinc-400 flex-1 outline-none" />
                    </div>
-                    <button type='submit' className='bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400'>
-                        Confirmar
+
+                    <Button type='submit' variant='primary' size='default'>
+                        Convidar
                         <Plus className='size-5'/>
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>
