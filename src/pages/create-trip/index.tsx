@@ -61,15 +61,15 @@ export function CreateTripPage() {
     if (!eventStartAndEndDate?.from || !eventStartAndEndDate?.to) {
       return
     }
-
+    
     if (emailsToInvite.length === 0) {
       return
     }
-
+    
     if (!ownerName || !ownerEmail) {
       return
     }
-
+    
     const response = await api.post('/trips', {
       destination,
       starts_at: eventStartAndEndDate.from,
@@ -77,11 +77,12 @@ export function CreateTripPage() {
       emails_to_invite: emailsToInvite,
       owner_name: ownerName,
       owner_email: ownerEmail
-    })
-
+    });
+    
+    console.log('5')
     const { tripId } = response.data
 
-    navigate(`/trips/${tripId}`)
+    navigate(`/trips/${ tripId }`)
   }
 
 
