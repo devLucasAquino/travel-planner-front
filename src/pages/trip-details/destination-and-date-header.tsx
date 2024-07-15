@@ -19,12 +19,14 @@ export function DestinationAndDateHeader(){
     const [ trip, setTrip ] = useState<Trip | undefined>()
 
     useEffect(() => {
-        api.get(`/trips/${tripId}`).then(response => setTrip(response.data.trip))
+        api.get(`/trips/${tripId}/activities`).then(response => setTrip(response.data.trip))
     }, [tripId])
 
     const displayedDate = trip
   ? format(trip.starts_at, "d ' de ' LLL").concat(' até ').concat(format(trip.ends_at, "d ' de ' LLL")) 
   : null
+
+  console.log(displayedDate)
 
     return(
             <div className="px-4 h-16 rounded-xl bg-zinc-900 shadow-shape flex items-center justify-between">

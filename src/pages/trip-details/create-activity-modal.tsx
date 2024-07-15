@@ -8,22 +8,26 @@ interface CreateActivityModalProps{
     closeCreateActivityModal: () => void;
 }
 
+
 export function CreateActivityModal({
     closeCreateActivityModal
 }: CreateActivityModalProps){
+    
     const { tripId } = useParams();
 
+    const url = `/trips/${tripId}/activities`;
+    
     async function createActivity(event: FormEvent<HTMLFormElement>){
         event.preventDefault();
         
         const data = new FormData(event.currentTarget)
 
         const title = data.get('title')?.toString();
-        const occurs_at = data.get('occurs_at')?.toString();
+        const occours_at = data.get('occurs_at')?.toString();
 
-        await api.post(`/trips/${tripId}/activities`, {
+        await api.post( url , {
             title, 
-            occurs_at
+            occours_at
         })
 
         window.document.location.reload();
@@ -45,27 +49,28 @@ export function CreateActivityModal({
                         </div>
         
                         <form onSubmit={createActivity} className='space-y-3'>
-        
-                        <div className='h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
-                            <Tag className='text-zinc-400 size-5'/>
-                            <input 
+                            <div className='h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
+                                <Tag className='text-zinc-400 size-5'/>
+                                <input 
                                 name='title' 
                                 placeholder="Qual a atividade?"  
-                                className="bg-transparent text-lg placeholder-zinc-400 flex-1 outline-none" />
-                        </div>
-        
-                        <div className="flex items-center gap-2">
-                            <div className='flex-1 h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
+                                className="bg-transparent text-lg placeholder-zinc-400 flex-1 outline-none" 
+                                />
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                                <div className='flex-1 h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
                                 <Calendar className='text-zinc-400 size-5'/>
                                 <input 
                                     type="datetime-local" 
                                     name='occurs_at' 
                                     placeholder="Data e hora"  
-                                    className="bg-transparent text-lg placeholder-zinc-400 flex-1 outline-none" />
+                                    className="bg-transparent text-lg placeholder-zinc-400 flex-1 outline-none" 
+                                />
+                                </div>
                             </div>
-                        </div>
 
-                            <Button  variant="primary" size="full">
+                            <Button variant="primary" size="full" type="submit"> {/* Adicionando type="submit" para o botão de salvar */}
                                 Salvar atividade
                             </Button>
                         </form>

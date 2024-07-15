@@ -1,5 +1,5 @@
 import { CircleCheck } from "lucide-react";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../lib/axios";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
@@ -22,6 +22,7 @@ export function Activities(){
         api.get(`/trips/${tripId}/activities`).then(response => setActivities(response.data.activities))
     }, [tripId])
 
+
     
     return(
         <div className="space-y-8">
@@ -36,13 +37,17 @@ export function Activities(){
                         {category.activities.length > 0 ?(
                             <div>
                                 {category.activities.map( activity => {
+                                    
+                                    // const formattedDate = format(new Date(activity.occurs_at), 'dd/MM/yyyy HH:mm:ss');
+                                    // console.log(formattedDate);
+
                                     return(
                                         <div key={activity.id} className="space-y-2.5">
                                             <div className="px-4 py-2.5 bg-zinc-900 rounded-xl shadow-shape flex items-center gap-3">
                                                 <CircleCheck className="size-5 text-lime-300"/>
                                                 <span className="text-zinc-100">{activity.title}</span>
                                                 <span className="text-zinc-400 text-sm ml-auto">
-                                                    {format(activity.occurs_at, 'HH:mm')}h
+                                                    {/* {format(activity.occurs_at, 'd')}h */}
                                                 </span>
                                              </div>
                                         </div>
