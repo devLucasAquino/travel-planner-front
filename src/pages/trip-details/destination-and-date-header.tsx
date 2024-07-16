@@ -19,7 +19,7 @@ export function DestinationAndDateHeader(){
     const [ trip, setTrip ] = useState<Trip | undefined>()
 
     useEffect(() => {
-        api.get(`/trips/${tripId}/details`).then(response => setTrip(response.data.trip))
+        api.get(`/trips/${tripId}`).then(response => setTrip(response.data.trip))
     }, [tripId])
 
     const displayedDate = trip
