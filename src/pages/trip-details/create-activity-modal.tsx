@@ -60,17 +60,17 @@ export function CreateActivityModal({
 
                             <div className="flex items-center gap-2">
                                 <div className='flex-1 h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
-                                <Calendar className='text-zinc-400 size-5'/>
-                                <input 
-                                    type="datetime-local" 
-                                    name='occurs_at' 
-                                    placeholder="Data e hora"  
-                                    className="bg-transparent text-lg placeholder-zinc-400 flex-1 outline-none" 
-                                />
+                                    <Calendar className='text-zinc-400 size-5'/>
+                                    <input 
+                                        type="datetime-local" 
+                                        name='occurs_at' 
+                                        placeholder="Data e hora"  
+                                        className="bg-transparent text-lg placeholder-zinc-400 flex-1 outline-none" 
+                                    />
                                 </div>
                             </div>
 
-                            <Button variant="primary" size="full" type="submit"> {/* Adicionando type="submit" para o botão de salvar */}
+                            <Button variant="primary" size="full" type="submit">
                                 Salvar atividade
                             </Button>
                         </form>
