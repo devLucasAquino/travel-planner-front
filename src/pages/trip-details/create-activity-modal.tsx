@@ -8,15 +8,12 @@ interface CreateActivityModalProps{
     closeCreateActivityModal: () => void;
 }
 
-
 export function CreateActivityModal({
     closeCreateActivityModal
 }: CreateActivityModalProps){
     
     const { tripId } = useParams();
 
-    const url = `/trips/${tripId}/activities`;
-    
     async function createActivity(event: FormEvent<HTMLFormElement>){
         event.preventDefault();
         
@@ -25,7 +22,7 @@ export function CreateActivityModal({
         const title = data.get('title')?.toString();
         const occours_at = data.get('occurs_at')?.toString();
 
-        await api.post( url , {
+        await api.post( `/trips/${tripId}/activities` , {
             title, 
             occours_at
         })
