@@ -10,7 +10,7 @@ interface Acitivity{
     activities: {
         id: string,
         title: string,
-        occurs_at: string,
+        occours_at: string,
     }[]
 }
 
@@ -19,7 +19,10 @@ export function Activities(){
     const [ activities, setActivities ] = useState<Acitivity[]>([]);
 
     useEffect(() => {
-        api.get(`/trips/${tripId}/activities`).then(response => setActivities(response.data.activities))
+        api.get(`/trips/${tripId}/activities`)
+        .then(response => 
+            setActivities(response.data.activities)
+        )
     }, [tripId])
 
 
@@ -37,17 +40,13 @@ export function Activities(){
                         {category.activities.length > 0 ?(
                             <div>
                                 {category.activities.map( activity => {
-                                    
-                                    // const formattedDate = format(new Date(activity.occurs_at), 'dd/MM/yyyy HH:mm:ss');
-                                    // console.log(formattedDate);
-
                                     return(
                                         <div key={activity.id} className="space-y-2.5">
                                             <div className="px-4 py-2.5 bg-zinc-900 rounded-xl shadow-shape flex items-center gap-3">
                                                 <CircleCheck className="size-5 text-lime-300"/>
                                                 <span className="text-zinc-100">{activity.title}</span>
                                                 <span className="text-zinc-400 text-sm ml-auto">
-                                                    {/* {format(activity.occurs_at, 'd')}h */}
+                                                    {format(activity.occours_at, 'HH:mm')}h
                                                 </span>
                                              </div>
                                         </div>
