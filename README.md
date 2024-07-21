@@ -10,6 +10,13 @@ Este repositório armazena o **código frontend do projeto travel planner**, que
 - Cadastrar links como de hoteís e empresas de turismo;
 - Verificar quais foram os convidados que confirmaram sua presença;
 
+## Desafio do projeto
+Este projeto foi selecionado pelo seu nível de complexidade, embora seja um simples aplicativo web, foram estudadas conexões do Front-End com o Back-End através de uma API e novas tecnologias.
+
+  - Diferentes lógicas e organização de projeto com React.
+  - Conhecimentos nas tecnologias Typescript e Tailwind CSS.
+
+
 ## Preview
 ### Home
 ![Loading...](./public/README/home-page.png)
